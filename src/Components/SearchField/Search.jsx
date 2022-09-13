@@ -1,10 +1,5 @@
 import React, { useState } from "react";
 import { FormField } from "./searchComponent";
-import axios from "axios";
-
-const api = axios.create(
-  "https://fake-movie-database-api.herokuapp.com/api?s=bat"
-);
 
 export default function Search() {
   const [searchBy, setSearchBy] = useState("");
