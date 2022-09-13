@@ -8,6 +8,8 @@ export default function MovieListContainer() {
   return (
     <MovieContainer>
       <MovieItem />
+      <MovieItem />
+      <MovieItem />
       {/* <MovieItem />
       <MovieItem />
       <MovieItem />
