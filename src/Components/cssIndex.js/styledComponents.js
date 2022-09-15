@@ -25,22 +25,23 @@ export const ButtonContainer = styled.div`
 `;
 
 export const MovieItem = styled.div`
-
-
   color: white;
   border: solid;
   border-color: white;
   width: 11rem;
-  height: 15rem;
-  padding: 1rem;
+  height: 17rem;
+  padding: 3rem;
   p {
-    1rem;
+    font-size: 0.7rem;
+  }
+  h3 {
+    font-size: 1rem;
   }
   img {
-    max-height: 79%;
-width: auto;
-height: auto;
-object-fit: cover;
+    max-height: 65%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
   }
   div {
     height: auto;

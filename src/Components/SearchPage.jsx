@@ -52,6 +52,7 @@ export default function Search() {
           src={"https://image.tmdb.org/t/p/w500" + "/" + post.poster_path}
           alt="image"
         />
+        <p>Release Date:{post.release_date}</p>
         {fav && (
           <button
             onClick={() => {

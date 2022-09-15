@@ -39,6 +39,7 @@ export default function TopRated(nav) {
             src={"https://image.tmdb.org/t/p/w500" + "/" + each.poster_path}
             alt="image"
           />
+          <p>Release Date:{each.release_date}</p>
           {fav && (
             <button
               onClick={() => {

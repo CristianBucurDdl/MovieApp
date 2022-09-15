@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { MovieItem } from "./cssIndex.js/styledComponents";
+import { each } from "lodash";
 
 export default function Upcoming(nav) {
   const [upcoming, setUpcoming] = useState(null);
@@ -29,15 +30,17 @@ export default function Upcoming(nav) {
   const newMovieArr = upcoming.results;
   //creating logic to map every obj that returns from get(api) and rendering them
   function MovieSplit() {
+    console.log(newMovieArr);
     return newMovieArr.map((each, i) => {
       return (
         <MovieItem>
-          <p key={each + 1}>{each.title}</p>
+          <h3 key={each + 1}>{each.title}</h3>
 
           <img
             src={"https://image.tmdb.org/t/p/w500" + "/" + each.poster_path}
             alt="image"
           />
+          <p>Release Date:{each.release_date}</p>
           {fav && (
             <button
               onClick={() => {

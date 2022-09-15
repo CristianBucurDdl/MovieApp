@@ -32,12 +32,12 @@ export default function Popular() {
       return (
         <MovieItem>
           <p key={each.id}>{each.title}</p>
-
           <img
             src={"https://image.tmdb.org/t/p/w500" + "/" + each.poster_path}
             alt="image"
           />
-          <button onClick={() => addTitle(each)}>add</button>
+          post
+          <button onClick={() => addTitle(each)}>Add favorite</button>
         </MovieItem>
       );
     });

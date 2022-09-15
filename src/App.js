@@ -1,6 +1,6 @@
 import "./App.css";
 import Header from "./Components/Header/Header";
-import Store from "./store";
+
 import MovieListContainer from "./Components/MovieList/MovieListContainer";
 
 function App() {
