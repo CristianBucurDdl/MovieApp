@@ -1,3 +1,11 @@
+This is the Movie app ,using TMDB api as api
+created in React and styled components for css to make it easy to read 
+and using axios
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
