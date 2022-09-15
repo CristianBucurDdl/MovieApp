@@ -19,6 +19,12 @@ export default function Popular() {
     }
   }
 
+  const favoriteArr = [];
+
+  function addTitle(title) {
+    favoriteArr.push(title);
+    console.log(favoriteArr);
+  }
   useEffect(() => {
     axios.get(otherBaseUrl).then((response) => {
       setUpcoming(response.data);
@@ -38,7 +44,8 @@ export default function Popular() {
             src={"https://image.tmdb.org/t/p/w500" + "/" + each.poster_path}
             alt="image"
           />
-          {fav && (
+          <button onClick={() => addTitle(each.title)}>add</button>
+          {/* {fav && (
             <button
               onClick={() => {
                 handleFav();
@@ -59,7 +66,7 @@ export default function Popular() {
             >
               Remove Favorite
             </button>
-          )}
+          )} */}
         </MovieItem>
       );
     });
