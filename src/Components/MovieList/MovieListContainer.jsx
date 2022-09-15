@@ -9,7 +9,8 @@ import TopRated from "../TopRated";
 import Popular from "../Popular";
 import Search from "../SearchPage";
 export default function MovieListContainer() {
-  const [nav, setNav] = useState("upcoming");
+  const [nav, setNav] = useState("upcoming"); ////using state to navigate between page,
+  //in out example it is easier than using Nav component, with Upcoming set as the "Homepage"
 
   return (
     <>
