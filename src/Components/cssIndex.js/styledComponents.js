@@ -4,11 +4,12 @@ export const MovieContainer = styled.div`
   background-color: black;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  padding-left: 1rem;
+
   max-width: 1200px;
   margin: 0 auto;
-  display: grid;
-  gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 `;
@@ -30,21 +31,29 @@ export const MovieItem = styled.div`
   border-color: white;
   width: 11rem;
   height: 17rem;
-  padding: 3rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
   p {
+    word-wrap: break-word;
     font-size: 0.7rem;
   }
   h3 {
+    word-wrap: break-word;
     font-size: 1rem;
   }
   img {
-    max-height: 65%;
-    width: auto;
-    height: auto;
-    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  & .posterContainer {
+    width: 95%;
+    height: 75%;
   }
   div {
     height: auto;
+  }
+  & .title {
+    max-height: 2rem;
   }
 `;
 export const FormField = styled.div`
