@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { MovieItem } from "./cssIndex.js/styledComponents";
-import { each } from "lodash";
+import { Button } from "./Buttons/CountButton";
 
 export default function Upcoming(nav) {
   const [upcoming, setUpcoming] = useState(null);
@@ -11,7 +11,7 @@ export default function Upcoming(nav) {
 
   const otherBaseUrl =
     "https://api.themoviedb.org/3/movie/upcoming?api_key=517f9f5b4b47532a5d573cfbaa3c556c";
-  ////tried to mage a favorite array to push to a global state but need to initialize redux for it   to work across the app
+  ////functionality to add an remove movie id if id is already inside the array so we prevent duplicate
   function handleFav(e) {
     if (!favArr.includes(e)) {
       setFavArr([...favArr, e]);
@@ -50,10 +50,11 @@ export default function Upcoming(nav) {
           <div className="releaseDate">
             <p>Release Date:{each.release_date}</p>
           </div>
-          {!favArr.includes(each.id) ? (
+
+          {!favArr.includes(each) ? (
             <button
               onClick={() => {
-                handleFav(each.id);
+                handleFav(each);
               }}
               aria-label="delete"
               color="primary"
@@ -63,7 +64,7 @@ export default function Upcoming(nav) {
           ) : (
             <button
               onClick={() => {
-                handleFav(each.id);
+                handleFav(each);
               }}
               aria-label="delete"
               color="primary"
