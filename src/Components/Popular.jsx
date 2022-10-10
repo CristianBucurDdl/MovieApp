@@ -1,21 +1,24 @@
 import React from "react";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { MovieItem } from "./cssIndex.js/styledComponents";
 
+import MovieContainer from "./pageComponents/MovieContainer";
 export default function Popular() {
   const [upcoming, setUpcoming] = useState(null);
-  const [fav, setFav] = useState(false);
-  const favoriteArr = [];
+  const [favArr, setFavArr] = useState([]);
+  function handleFav(e) {
+    if (!favArr.includes(e)) {
+      setFavArr([...favArr, e]);
+    } else {
+      let index = favArr.indexOf(e);
+      favArr.splice(index, 1);
+      setFavArr([...favArr]);
+    }
+  }
 
   const otherBaseUrl =
     "https://api.themoviedb.org/3/movie/popular?api_key=517f9f5b4b47532a5d573cfbaa3c556c";
 
-  function addTitle(obj) {
-    ////tried to mage a favorite array to push to a global state but need to initialize redux for it   to work across the app
-    favoriteArr.push(obj);
-    console.log(favoriteArr);
-  }
   useEffect(() => {
     axios.get(otherBaseUrl).then((response) => {
       //////geting the data from the specific section in the api
@@ -30,15 +33,12 @@ export default function Popular() {
   function MovieSplit() {
     return newMovieArr.map((each, i) => {
       return (
-        <MovieItem>
-          <p key={each.id}>{each.title}</p>
-          <img
-            src={"https://image.tmdb.org/t/p/w500" + "/" + each.poster_path}
-            alt="image"
-          />
-          post
-          <button onClick={() => addTitle(each)}>Add favorite</button>
-        </MovieItem>
+        <MovieContainer
+          key={each.id}
+          each={each}
+          favArr={favArr}
+          handleFav={handleFav}
+        />
       );
     });
   }

@@ -2,21 +2,23 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { MovieItem } from "./cssIndex.js/styledComponents";
-
+import MovieContainer from "./pageComponents/MovieContainer";
 export default function TopRated(nav) {
   const [upcoming, setUpcoming] = useState(null);
   const [fav, setFav] = useState(false);
+  const [favArr, setFavArr] = useState([]);
 
   const otherBaseUrl =
     "https://api.themoviedb.org/3/movie/top_rated?api_key=517f9f5b4b47532a5d573cfbaa3c556c";
 
   ////temporary replacement for favorite button
-  function handleFav() {
-    setFav(!fav);
-    if (fav === true) {
-      console.log("added");
+  function handleFav(e) {
+    if (!favArr.includes(e)) {
+      setFavArr([...favArr, e]);
     } else {
-      console.log("removed");
+      let index = favArr.indexOf(e);
+      favArr.splice(index, 1);
+      setFavArr([...favArr]);
     }
   }
   //////geting the data from the specific section in the api
@@ -32,37 +34,12 @@ export default function TopRated(nav) {
   function MovieSplit() {
     return newMovieArr.map((each, i) => {
       return (
-        <MovieItem>
-          <p key={each + 1}>{each.title}</p>
-
-          <img
-            src={"https://image.tmdb.org/t/p/w500" + "/" + each.poster_path}
-            alt="image"
-          />
-          <p>Release Date:{each.release_date}</p>
-          {fav && (
-            <button
-              onClick={() => {
-                handleFav();
-              }}
-              aria-label="delete"
-              color="primary"
-            >
-              Add favorite
-            </button>
-          )}
-          {!fav && (
-            <button
-              onClick={() => {
-                handleFav();
-              }}
-              aria-label="delete"
-              color="primary"
-            >
-              Remove Favorite
-            </button>
-          )}
-        </MovieItem>
+        <MovieContainer
+          key={each.id}
+          each={each}
+          favArr={favArr}
+          handleFav={handleFav}
+        />
       );
     });
   }

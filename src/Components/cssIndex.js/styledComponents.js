@@ -26,6 +26,7 @@ export const ButtonContainer = styled.div`
 `;
 
 export const MovieItem = styled.div`
+  position: relative;
   color: white;
   border: solid;
   border-color: white;
@@ -42,6 +43,7 @@ export const MovieItem = styled.div`
     font-size: 1rem;
   }
   img {
+    position: relative;
     width: 100%;
     height: 100%;
   }
@@ -54,6 +56,17 @@ export const MovieItem = styled.div`
   }
   & .title {
     max-height: 2rem;
+  }
+  button {
+    position: absolute;
+    z-index: 9;
+    float: left;
+    background: transparent;
+    border: none;
+    margin: -18px;
+    
+    margin-left: -109px;
+}
   }
 `;
 export const FormField = styled.div`

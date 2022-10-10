@@ -4,21 +4,22 @@ import { useState } from "react";
 import axios from "axios";
 import { FaSearch } from "react-icons/fa"; /////icon for search button
 import { MovieItem, MovieContainer } from "./cssIndex.js/styledComponents"; ///importing css as component
-
+import MovieContain from "./pageComponents/MovieContainer";
 export default function Search() {
   const [searchBy, setSearchBy] = useState(""); ///value of input for search in db
   const [searchResult, setSearchResult] = useState(null); ///final result after get()
   const [isLoading, setIsLoading] = useState(false); //loading status to be used in case loading is slow
   const [err, setErr] = useState(""); ///error status
-  const [fav, setFav] = useState(false); ///st so fav status
 
+  const [favArr, setFavArr] = useState([]);
   ///temporary func for set to favorites ,
-  function handleFav() {
-    setFav(!fav);
-    if (fav === true) {
-      console.log("added");
+  function handleFav(e) {
+    if (!favArr.includes(e)) {
+      setFavArr([...favArr, e]);
     } else {
-      console.log("removed");
+      let index = favArr.indexOf(e);
+      favArr.splice(index, 1);
+      setFavArr([...favArr]);
     }
   }
 
@@ -30,7 +31,6 @@ export default function Search() {
         "https://api.themoviedb.org/3/search/movie?api_key=517f9f5b4b47532a5d573cfbaa3c556c&language=en-US&query=" +
           searchBy
       );
-      console.log(data.data.results);
       return setSearchResult(data.data.results);
     } catch (err) {
       setErr(err.message);
@@ -44,51 +44,25 @@ export default function Search() {
     console.log("request ok");
   }
   //component to be mapped and render after search is finished
-  function Post({ post }) {
-    return (
-      <MovieItem color="white">
-        <p>{post.title}</p>
-        <img
-          src={"https://image.tmdb.org/t/p/w500" + "/" + post.poster_path}
-          alt="image"
-        />
-        <p>Release Date:{post.release_date}</p>
-        {fav && (
-          <button
-            onClick={() => {
-              handleFav();
-            }}
-            aria-label="delete"
-            color="primary"
-          >
-            Add favorite
-          </button>
-        )}
-        {!fav && (
-          <button
-            onClick={() => {
-              handleFav();
-            }}
-            aria-label="delete"
-            color="primary"
-          >
-            Remove Favorite
-          </button>
-        )}
-      </MovieItem>
-    );
-  }
-  //component that is using  Post component from above and mapping from search result Array
+
+  //component that is using  and mapping from search result Array
   function ListPage() {
     const results = searchResult
-      ? searchResult.map((post) => <Post key={post.id} post={post} />)
+      ? searchResult.map((each) => (
+          <MovieContain
+            key={each.id}
+            each={each}
+            favArr={favArr}
+            handleFav={handleFav}
+          />
+        ))
       : [];
     const content = results?.length ? (
       results
     ) : (
-      <MovieItem>
+      <div style={{ color: "azure" }}>
         <p>No result</p>
-      </MovieItem>
+      </div>
     );
 
     return <MovieContainer>{content}</MovieContainer>;
