@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { MovieItem } from "./cssIndex.js/styledComponents";
 import MovieContainer from "./pageComponents/MovieContainer";
-export default function TopRated(nav) {
+export default function TopRated({ count, setCount }) {
   const [upcoming, setUpcoming] = useState(null);
   const [fav, setFav] = useState(false);
   const [favArr, setFavArr] = useState([]);
@@ -15,10 +15,12 @@ export default function TopRated(nav) {
   function handleFav(e) {
     if (!favArr.includes(e)) {
       setFavArr([...favArr, e]);
+      setCount([...favArr, e]);
     } else {
       let index = favArr.indexOf(e);
       favArr.splice(index, 1);
       setFavArr([...favArr]);
+      setCount([...favArr]);
     }
   }
   //////geting the data from the specific section in the api

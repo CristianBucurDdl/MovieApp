@@ -4,14 +4,21 @@ import axios from "axios";
 import { MovieItem } from "./cssIndex.js/styledComponents";
 import { Button } from "./Buttons/CountButton";
 import MovieContainer from "./pageComponents/MovieContainer";
-export default function Upcoming(nav) {
+export default function Upcoming({ favArr, setFavArr, isFav }) {
   const [upcoming, setUpcoming] = useState(null);
-  // const [fav, setFav] = useState(false);
-  const [favArr, setFavArr] = useState([]);
+  const [fav, setFav] = useState(false);
+  // const [favArr, setFavArr] = useState([]);
 
   const otherBaseUrl =
     "https://api.themoviedb.org/3/movie/upcoming?api_key=517f9f5b4b47532a5d573cfbaa3c556c";
   ////functionality to add an remove movie id if id is already inside the array so we prevent duplicate
+  useEffect(() => {
+    if (favArr.length > 0) {
+      console.log("are");
+    } else {
+      console.log("n-are");
+    }
+  }, []);
 
   console.log(favArr);
   //////geting the data from the specific section in the api
@@ -30,6 +37,7 @@ export default function Upcoming(nav) {
       setFavArr([...favArr]);
     }
   }
+
   const newMovieArr = upcoming.results;
   //creating logic to map every obj that returns from get(api) and rendering them
   function MovieSplit() {
