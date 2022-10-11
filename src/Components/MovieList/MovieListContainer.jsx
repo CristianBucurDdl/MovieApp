@@ -10,6 +10,10 @@ import Popular from "../Popular";
 import Search from "../SearchPage";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
+import { FaSearch } from "react-icons/fa";
+import { HiHome } from "react-icons/hi";
+
+import { SiYoutubestudio, SiPopos } from "react-icons/si";
 export default function MovieListContainer() {
   const [nav, setNav] = useState("upcoming"); ////using state to navigate between page,
   //in out example it is easier than using Nav component, with Upcoming set as the "Homepage"
@@ -19,18 +23,32 @@ export default function MovieListContainer() {
   return (
     <Router>
       <ButtonContainer>
-        <button>
-          <Link to="/Upcoming">Upcoming</Link>
-        </button>
-        <button>
-          <Link to="/Upcoming/top_rated">Top Rated</Link>
-        </button>
-        <button>
-          <Link to="/Upcoming/popular">Popular</Link>
-        </button>
-        <button>
-          <Link to="/Upcoming/search">Search</Link>
-        </button>
+        <Link to="/Upcoming">
+          <button>
+            <HiHome /> Home
+          </button>
+        </Link>
+
+        <Link to="/Upcoming/top_rated">
+          <button>
+            <SiYoutubestudio />
+            Top Rated
+          </button>
+        </Link>
+
+        <Link to="/Upcoming/popular">
+          <button>
+            <SiPopos />
+            Popular
+          </button>
+        </Link>
+
+        <Link to="/Upcoming/search">
+          <button>
+            <FaSearch />
+            Search
+          </button>
+        </Link>
       </ButtonContainer>
       <div>{count.length}</div>
       <MovieContainer>
