@@ -1,4 +1,3 @@
-import "./App.css";
 import Header from "./Components/Header/Header";
 
 import MovieListContainer from "./Components/MovieList/MovieListContainer";
