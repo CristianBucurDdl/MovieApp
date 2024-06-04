@@ -14,5 +14,41 @@ export default function MovieContainer({ each, handleFav, favArr }) {
       console.log("n-are");
     }
   }, []);
-  return <></>;
+  return (
+    <MovieItem>
+      {!favArr.includes(each) ? (
+        <button
+          onClick={() => {
+            handleFav(each);
+          }}
+          aria-label="delete"
+          color="primary"
+        >
+          <NotSaved />
+        </button>
+      ) : (
+        <button
+          onClick={() => {
+            handleFav(each);
+          }}
+          aria-label="delete"
+          color="primary"
+        >
+          <SaveIcon />
+        </button>
+      )}
+      <div className="posterContainer">
+        <img
+          src={"https://image.tmdb.org/t/p/w500" + "/" + each.poster_path}
+          alt="image"
+        />
+      </div>
+      <div className="title">
+        <h3 key={each + 1}>{each.title}</h3>
+      </div>
+      <div className="releaseDate">
+        <p>Release Date:{each.release_date}</p>
+      </div>
+    </MovieItem>
+  );
 }
