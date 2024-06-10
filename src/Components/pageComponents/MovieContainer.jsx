@@ -38,10 +38,10 @@ export default function MovieContainer({ each, handleFav, favArr }) {
         </button>
       )}
       <div className="posterContainer">
-        {/* <img
+        <img
           src={"https://image.tmdb.org/t/p/w500" + "/" + each.poster_path}
           alt="image"
-        /> */}
+        />
       </div>
       <div className="title">
         <h3 key={each + 1}>{each.title}</h3>
