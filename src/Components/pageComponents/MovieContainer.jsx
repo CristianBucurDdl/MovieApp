@@ -37,13 +37,7 @@ export default function MovieContainer({ each, handleFav, favArr }) {
           <SaveIcon />
         </button>
       )}
-      <div className="posterContainer">
-      <div className="posterContainer">
-      <div className="posterContainer">
-      <div className="posterContainer">
-      <div className="posterContainer">
-  
-      </div>
+      <div className="posterContainer"></div>
       <div className="title">
         <h3 key={each + 1}>{each.title}</h3>
       </div>
