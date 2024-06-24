@@ -40,6 +40,9 @@ export default function MovieContainer({ each, handleFav, favArr }) {
       <div className="posterContainer"></div>
       <div className="title">
         <h3 key={each + 1}>{each.title}</h3>
+        <h3 key={each + 1}>{each.title}</h3>
+        <h3 key={each + 1}>{each.title}</h3>
+        <h3 key={each + 1}>{each.title}</h3>
       </div>
       <div className="releaseDate">
         <p>Release Date:{each.release_date}</p>
